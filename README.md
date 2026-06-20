@@ -267,20 +267,27 @@ When a job is dequeued, the Celery worker runs these steps in order:
 ## Project Structure
 
 ```
-app/
-├── main.py              # FastAPI entry point
-├── config.py            # Settings (reads from .env)
-├── database.py          # Async SQLAlchemy engine
-├── models/              # ORM models (Job, Transaction, JobSummary)
-├── schemas/             # Pydantic response schemas
-├── routers/             # API route handlers
-├── services/            # Business logic (cleaner, anomaly, llm, csv_parser)
-└── worker/              # Celery app + tasks
-alembic/                 # Database migrations
-tests/                   # Test suite
-docs/                    # System design & architecture notes
-Dockerfile
-docker-compose.yml
+.
+├── alembic/                 # Database migrations (Alembic scripts)
+├── app/
+│   ├── models/              # ORM models (Job, Transaction, JobSummary)
+│   ├── routers/             # API route handlers (jobs)
+│   ├── schemas/             # Pydantic response schemas (job)
+│   ├── services/            # Business logic (cleaner, anomaly, llm, csv_parser)
+│   ├── utils/               # Utility modules
+│   ├── worker/              # Celery app + background tasks
+│   ├── config.py            # Configuration settings (reads from .env)
+│   ├── database.py          # Database connection & setup
+│   └── main.py              # FastAPI application entry point
+├── tests/                   # Pytest suite
+├── .env.example             # Template for environment variables
+├── .gitignore               # Ignored files from git
+├── alembic.ini              # Alembic config
+├── assignment.pdf           # Assignment instructions
+├── Dockerfile               # Docker build definition
+├── docker-compose.yml       # Multi-container Compose orchestration
+├── pytest.ini               # Pytest configuration settings
+└── requirements.txt         # Python project dependencies
 ```
 
 ---
